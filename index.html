@@ -28,7 +28,7 @@
     main {
       max-width: 860px;
       margin: 0 auto;
-      padding: 72px 24px 56px;
+      padding: 0 24px 56px;
     }
 
     a { color: inherit; }
@@ -37,10 +37,11 @@
 
     .mono { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--dim); }
 
+    .intro { border-bottom: 1px solid var(--rule); }
     .top {
-      display: grid;
-      padding-bottom: 56px;
-      border-bottom: 1px solid var(--rule);
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 24px 56px;
     }
     h1 {
       margin: 0 0 18px;
@@ -62,11 +63,18 @@
       display: grid;
       grid-template-columns: 140px 1fr;
       gap: 24px;
-      padding: 28px 0;
-      border-top: 1px solid var(--rule);
+      padding: 18px 0;
     }
-    .job:last-child { border-bottom: 1px solid var(--rule); }
-    .job-body { display: flex; gap: 18px; align-items: flex-start; }
+    .job-body { position: relative; display: flex; gap: 18px; align-items: flex-start; }
+    .job:not(:last-child) .job-body::before {
+      content: "";
+      position: absolute;
+      left: 31px;
+      top: 76px;
+      bottom: -18px;
+      width: 1px;
+      background: #36332f;
+    }
     .job h3 { margin: 0 0 6px; font-size: 19px; font-weight: 600; }
     .logo {
       flex-shrink: 0;
@@ -142,8 +150,7 @@
     .tools h3 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
     .tools ul { list-style: none; margin: 0; padding: 0; font-size: 14.5px; }
     .tools li {
-      padding: 6px 0;
-      border-bottom: 1px solid var(--rule);
+      padding: 3px 0;
       color: var(--dim);
     }
 
@@ -153,22 +160,23 @@
     main > section:last-child { padding-bottom: 24px; }
 
     @media (max-width: 640px) {
-      main { padding-top: 48px; }
-      .top { grid-template-columns: 1fr; gap: 32px; }
+      .top { padding-top: 48px; }
       .job { grid-template-columns: 1fr; gap: 6px; }
       .tools { grid-template-columns: 1fr 1fr; gap: 24px; }
     }
   </style>
 </head>
 <body>
-  <main>
+  <header class="intro">
     <div class="top">
       <div>
         <h1>Hi! I'm lucii.</h1>
         <p>I work on games and help people protect theirs too. I specialize in security work also very experienced in general game development, with 5+ years of experience.</p>
       </div>
     </div>
+  </header>
 
+  <main>
     <section>
       <h2>Work history</h2>
       <div class="job">
