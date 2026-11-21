@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>lucii</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #141312;
+      --text: #e8e4dc;
+      --dim: #8b867d;
+      --rule: #2a2825;
+      --accent: #6ea8fe;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 16px/1.65 "IBM Plex Sans", system-ui, sans-serif;
+    }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 72px 24px 56px;
+    }
+
+    a { color: inherit; }
+    p a, .contact a { color: var(--text); font-weight: 500; text-decoration: none; }
+    p a:hover, .contact a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+    .mono { font-family: "IBM Plex Mono", monospace; font-size: 13px; color: var(--dim); }
+
+    .top {
+      display: grid;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--rule);
+    }
+    h1 {
+      margin: 0 0 18px;
+      font-size: 22px;
+      font-weight: 600;
+    }
+    .top p { margin: 0 0 14px; max-width: 480px; }
+    .top p.dimmed { color: var(--dim); }
+
+    section { padding-top: 56px; }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--dim);
+    }
+
+    .job {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-top: 1px solid var(--rule);
+    }
+    .job:last-child { border-bottom: 1px solid var(--rule); }
+    .job-body { display: flex; gap: 18px; align-items: flex-start; }
+    .job h3 { margin: 0 0 6px; font-size: 19px; font-weight: 600; }
+    .logo {
+      flex-shrink: 0;
+      width: 64px;
+      height: 64px;
+      padding: 4px;
+      border-radius: 10px;
+      border: 1.5px dashed #5a554e;
+      background: #1e1c1a;
+      background-clip: content-box;
+      object-fit: cover;
+      display: grid;
+      place-items: center;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dim);
+    }
+    .job p { margin: 0; color: #c9c4ba; }
+
+    .job h3 a { text-decoration: none; }
+    .job h3 a:hover, .site:hover { color: var(--accent); }
+    .site { display: inline-block; margin-top: 6px; text-decoration: none; }
+
+    .clip {
+      position: relative;
+      display: block;
+      width: 200px;
+      margin-top: 12px;
+      padding: 0;
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+      cursor: zoom-in;
+    }
+    .clip video { display: block; width: 100%; opacity: 0.85; transition: opacity 0.15s; }
+    .clip:hover video { opacity: 1; }
+    .play {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 34px;
+      height: 34px;
+      margin: -17px 0 0 -17px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .play::after {
+      content: "";
+      position: absolute;
+      left: 13px;
+      top: 10px;
+      border-left: 11px solid #fff;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+    }
+
+    .viewer {
+      width: min(1100px, 92vw);
+      padding: 0;
+      border: 1px solid var(--rule);
+      border-radius: 10px;
+      background: #000;
+    }
+    .viewer::backdrop { background: rgba(0, 0, 0, 0.8); }
+    .viewer video { display: block; width: 100%; }
+
+    .tools {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .tools h3 { margin: 0 0 6px; font-size: 14px; font-weight: 600; }
+    .tools ul { list-style: none; margin: 0; padding: 0; font-size: 14.5px; }
+    .tools li {
+      padding: 6px 0;
+      border-bottom: 1px solid var(--rule);
+      color: var(--dim);
+    }
+
+    .contact { font-size: 15px; }
+    .contact p { margin: 0; }
+
+    main > section:last-child { padding-bottom: 24px; }
+
+    @media (max-width: 640px) {
+      main { padding-top: 48px; }
+      .top { grid-template-columns: 1fr; gap: 32px; }
+      .job { grid-template-columns: 1fr; gap: 6px; }
+      .tools { grid-template-columns: 1fr 1fr; gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="top">
+      <div>
+        <h1>Hi! I'm lucii.</h1>
+        <p>I work on games and help people protect theirs too. I specialize in security work also very experienced in general game development, with 5+ years of experience.</p>
+      </div>
+    </div>
+
+    <section>
+      <h2>Work history</h2>
+      <div class="job">
+        <span class="mono">2022 to 2023</span>
+        <div class="job-body">
+          <img class="logo" src="img/kocmoc.png" alt="">
+          <div>
+            <h3>Kocmoc - Developer</h3>
+            <p>Developer under a team for an automation tool for Roblox with over 3,000 paying users.</p>
+          </div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="mono">2024 to 2025</span>
+        <div class="job-body">
+          <img class="logo" src="img/red-spyder.png" alt="">
+          <div>
+            <h3>Red Spyder - Developer and Whitehat</h3>
+            <p>Developer on Pixel Tower Defense, reaching up to 15K CCU. Found and patched vulnerabilities and maintained a large codebase.</p>
+            <button class="clip" type="button" aria-label="Play Red Spyder clip">
+              <video src="video/red-spyder.mp4#t=1" muted playsinline preload="metadata"></video>
+              <span class="play"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="mono">2025 to 2026</span>
+        <div class="job-body">
+          <img class="logo" src="img/prival.webp" alt="">
+          <div>
+            <h3>Prival Studios - Whitehat</h3>
+            <p>Whitehat for Prival Studios, mainly on "Nethros", specializing in finding game-breaking vulnerabilities and patching them.</p>
+          </div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="mono">2026 to now</span>
+        <div class="job-body">
+          <img class="logo" src="img/allium.png" alt="">
+          <div>
+            <h3>Allium - Owner and Lead Developer</h3>
+            <p>Managing a team building an automation tool for Roblox with over 300 paying users, and maintaining a shared codebase across 15+ supported games.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Personal work</h2>
+      <div class="job">
+        <span class="mono">Luau</span>
+        <div class="job-body">
+          <span class="logo">V</span>
+          <div>
+            <h3>Vesper</h3>
+            <p>A Luau obfuscator designed to protect people's scripts.</p>
+          </div>
+        </div>
+      </div>
+      <div class="job">
+        <span class="mono">Windows</span>
+        <div class="job-body">
+          <img class="logo" src="img/rosette.svg" alt="">
+          <div>
+            <h3><a href="https://rosette.lol" target="_blank" rel="noopener">Rosette</a></h3>
+            <p>Lightweight game clipping software for Windows.</p>
+            <a class="mono site" href="https://rosette.lol" target="_blank" rel="noopener">rosette.lol</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Toolset</h2>
+      <div class="tools">
+        <div>
+          <h3>Languages</h3>
+          <ul><li>Luau</li><li>C++</li><li>AngelScript</li><li>HTML / CSS</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <p>If you'd like to contact me for work, my discord user is: <strong>oaomorii</strong></p>
+    </section>
+  </main>
+
+  <dialog class="viewer" id="viewer"><video controls playsinline></video></dialog>
+  <script>
+    const viewer = document.getElementById('viewer');
+    const big = viewer.querySelector('video');
+    document.querySelectorAll('.clip').forEach(btn => btn.addEventListener('click', () => {
+      big.src = btn.querySelector('video').getAttribute('src').split('#')[0];
+      viewer.showModal();
+      big.play();
+    }));
+    viewer.addEventListener('click', e => { if (e.target === viewer) viewer.close(); });
+    viewer.addEventListener('close', () => big.pause());
+  </script>
+</body>
+</html>
