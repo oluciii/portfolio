@@ -42,6 +42,17 @@
       max-width: 860px;
       margin: 0 auto;
       padding: 72px 24px 56px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .avatar {
+      flex-shrink: 0;
+      width: 128px;
+      height: 128px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      object-fit: cover;
     }
     h1 {
       margin: 0 0 18px;
@@ -160,7 +171,8 @@
     main > section:last-child { padding-bottom: 24px; }
 
     @media (max-width: 640px) {
-      .top { padding-top: 48px; }
+      .top { padding-top: 48px; flex-direction: column; align-items: flex-start; gap: 24px; }
+      .avatar { width: 96px; height: 96px; }
       .job { grid-template-columns: 1fr; gap: 6px; }
       .tools { grid-template-columns: 1fr 1fr; gap: 24px; }
     }
@@ -169,6 +181,7 @@
 <body>
   <header class="intro">
     <div class="top">
+      <img class="avatar" src="img/avatar.png" alt="lucii">
       <div>
         <h1>Hi! I'm lucii.</h1>
         <p>I work on games and help people protect theirs too. I specialize in security work also very experienced in general game development, with 5+ years of experience.</p>
