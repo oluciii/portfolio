@@ -219,6 +219,31 @@
 
     main > section:last-child { padding-bottom: 24px; }
 
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+      @keyframes pop { from { transform: scale(0); } }
+      @keyframes zoom { from { opacity: 0; transform: scale(0.96); } }
+
+      .top > * { animation: rise 0.6s ease-out both; }
+      .top > :nth-child(2) { animation-delay: 0.1s; }
+
+      .js .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+      .js .reveal.in { opacity: 1; transform: none; }
+      .js .job::before { clip-path: inset(0 0 100% 0); transition: clip-path 0.7s ease-in-out 0.25s; }
+      .js .job.in::before { clip-path: inset(0); }
+      .js .job.in::after { animation: pop 0.35s ease-out 0.1s both; }
+
+      .entry[open] > :not(summary) { animation: rise 0.3s ease-out both; }
+
+      .logo { transition: transform 0.2s, border-color 0.2s; }
+      .job:hover .logo { transform: translateY(-2px); border-color: #8b867d; }
+      .avatar { transition: transform 0.3s; }
+      .avatar:hover { transform: rotate(-4deg) scale(1.03); }
+
+      .viewer[open] { animation: zoom 0.2s ease-out; }
+      .viewer[open]::backdrop { animation: rise 0.2s ease-out; }
+    }
+
     @media (max-width: 640px) {
       .top { padding-top: 48px; flex-direction: column; align-items: flex-start; gap: 24px; }
       .avatar { width: 96px; height: 96px; }
@@ -374,6 +399,19 @@
     }));
     viewer.addEventListener('click', e => { if (e.target === viewer) viewer.close(); });
     viewer.addEventListener('close', () => big.pause());
+
+    if ('IntersectionObserver' in window) {
+      document.documentElement.classList.add('js');
+      const seen = new IntersectionObserver(items => items.forEach(item => {
+        if (!item.isIntersecting) return;
+        item.target.classList.add('in');
+        seen.unobserve(item.target);
+      }), { rootMargin: '0px 0px -8% 0px' });
+      document.querySelectorAll('h2, .job, .tools, .contact').forEach(el => {
+        el.classList.add('reveal');
+        seen.observe(el);
+      });
+    }
   </script>
 </body>
 </html>
