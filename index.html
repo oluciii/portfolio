@@ -54,6 +54,7 @@
       border: 3px solid #fff;
       object-fit: cover;
     }
+    .pronouns { font-weight: 400; color: var(--dim); }
     h1 {
       margin: 0 0 18px;
       font-size: 22px;
@@ -74,18 +75,31 @@
       display: grid;
       grid-template-columns: 140px 1fr;
       gap: 24px;
-      padding: 18px 0;
+      position: relative;
+      padding: 18px 0 18px 40px;
     }
-    .job-body { position: relative; display: flex; gap: 18px; align-items: flex-start; }
-    .job:not(:last-child) .job-body::before {
+    .job::before {
       content: "";
       position: absolute;
-      left: 31px;
-      top: 76px;
-      bottom: -18px;
-      width: 1px;
-      background: #36332f;
+      left: 0;
+      top: 29px;
+      bottom: -29px;
+      width: 24px;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 100' preserveAspectRatio='none'%3E%3Cpath d='M12 0 C22 16 22 34 12 50 S2 84 12 100' fill='none' stroke='%23524d46' stroke-width='2.5' stroke-linecap='round' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat;
+      background-size: 100% 100%;
     }
+    .job:last-child::before { display: none; }
+    .job::after {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 25px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #a39e94;
+    }
+    .job-body { display: flex; gap: 18px; align-items: flex-start; }
     .job h3 { margin: 0 0 6px; font-size: 19px; font-weight: 600; }
     .logo {
       flex-shrink: 0;
@@ -109,6 +123,38 @@
     .job h3 a:hover, .site:hover { color: var(--accent); }
     .site { display: inline-block; margin-top: 6px; text-decoration: none; }
 
+    .job .site { display: block; margin: 0 0 8px; }
+    .details {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: #b3aea4;
+      font-size: 15px;
+    }
+    .details li { margin: 6px 0; }
+    .details li::marker { color: var(--dim); }
+
+    .entry summary {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      list-style: none;
+      cursor: pointer;
+    }
+    .entry summary::-webkit-details-marker { display: none; }
+    .entry summary h3 { margin-bottom: 0; }
+    .entry[open] summary { margin-bottom: 6px; }
+    .chev {
+      width: 7px;
+      height: 7px;
+      margin-top: -3px;
+      border-right: 1.5px solid var(--dim);
+      border-bottom: 1.5px solid var(--dim);
+      transform: rotate(45deg);
+      transition: transform 0.15s;
+    }
+    .entry:not([open]) .chev { transform: rotate(-45deg); margin-top: 0; }
+    .entry summary:hover .chev { border-color: var(--text); }
+
     .clip {
       position: relative;
       display: block;
@@ -121,8 +167,10 @@
       background: #000;
       cursor: zoom-in;
     }
-    .clip video { display: block; width: 100%; opacity: 0.85; transition: opacity 0.15s; }
-    .clip:hover video { opacity: 1; }
+    .media { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .media .clip { margin-top: 0; }
+    .clip video, .clip img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; opacity: 0.85; transition: opacity 0.15s; }
+    .clip:hover video, .clip:hover img { opacity: 1; }
     .play {
       position: absolute;
       left: 50%;
@@ -151,7 +199,8 @@
       background: #000;
     }
     .viewer::backdrop { background: rgba(0, 0, 0, 0.8); }
-    .viewer video { display: block; width: 100%; }
+    .viewer video, .viewer img { display: block; width: 100%; }
+    .viewer [hidden] { display: none; }
 
     .tools {
       display: grid;
@@ -183,8 +232,8 @@
     <div class="top">
       <img class="avatar" src="img/avatar.png" alt="lucii">
       <div>
-        <h1>Hi! I'm lucii.</h1>
-        <p>I work on games and help people protect theirs too. I specialize in security work also very experienced in general game development, with 5+ years of experience.</p>
+        <h1>lucii <span class="pronouns">(she/her)</span></h1>
+        <p>I'm an 18 year old software engineer who works on games and build the tools to help people protect theirs too! I specialize in security work, and I'm also very experienced in general game development, with 5+ years of experience.</p>
       </div>
     </div>
   </header>
@@ -196,44 +245,75 @@
         <span class="mono">2022 to 2023</span>
         <div class="job-body">
           <img class="logo" src="img/kocmoc.png" alt="">
-          <div>
-            <h3>Kocmoc - Developer</h3>
+          <details class="entry" open>
+            <summary><h3>Kocmoc - Developer</h3><span class="chev" aria-hidden="true"></span></summary>
             <p>Developer under a team for an automation tool for Roblox with over 3,000 paying users.</p>
-          </div>
+          </details>
         </div>
       </div>
       <div class="job">
         <span class="mono">2024 to 2025</span>
         <div class="job-body">
           <img class="logo" src="img/red-spyder.png" alt="">
-          <div>
-            <h3>Red Spyder - Developer and Whitehat</h3>
-            <p>Developer on Pixel Tower Defense, reaching up to 15K CCU. Found and patched vulnerabilities and maintained a large codebase.</p>
-            <button class="clip" type="button" aria-label="Play Red Spyder clip">
-              <video src="video/red-spyder.mp4#t=1" muted playsinline preload="metadata"></video>
-              <span class="play"></span>
-            </button>
-          </div>
+          <details class="entry" open>
+            <summary><h3>Red Spyder - Developer and Whitehat</h3><span class="chev" aria-hidden="true"></span></summary>
+            <p>From 2024 to 2025, I worked on Pixel Tower Defense, a game with over 10+ million visits and a peak CCU of 15k working as a backend developer and whitehat.</p>
+            <ul class="details">
+              <li>Learned useful collaboration skills, working with a team of other developers under a lead.</li>
+              <li>Found and patched multiple economy-breaking exploits before bad actors could abuse them.</li>
+              <li>Worked with a large existing codebase, maintaining it cleanly and polishing bugs.</li>
+              <li>Created debugging tools to make developing more efficient, greatly improving update+testing speeds.</li>
+            </ul>
+            <div class="media">
+              <button class="clip" type="button" aria-label="View Pixel Tower Defense 10M visits milestone">
+                <img src="img/ptd-10m.webp" alt="Pixel Tower Defense 10M visits milestone">
+              </button>
+              <button class="clip" type="button" aria-label="Play Red Spyder clip">
+                <video src="video/red-spyder.mp4#t=1" muted playsinline preload="metadata"></video>
+                <span class="play"></span>
+              </button>
+            </div>
+          </details>
         </div>
       </div>
       <div class="job">
         <span class="mono">2025 to 2026</span>
         <div class="job-body">
           <img class="logo" src="img/prival.webp" alt="">
-          <div>
-            <h3>Prival Studios - Whitehat</h3>
+          <details class="entry" open>
+            <summary><h3>Prival Studios - Whitehat</h3><span class="chev" aria-hidden="true"></span></summary>
             <p>Whitehat for Prival Studios, mainly on "Nethros", specializing in finding game-breaking vulnerabilities and patching them.</p>
-          </div>
+            <ul class="details">
+              <li>Successfully found multiple game-breaking vulnerabilities, such as server crashers, dupes, instant kill etc.</li>
+              <li>Worked with developers to patch vulnerabilities and work outside without game access</li>
+            </ul>
+          </details>
         </div>
       </div>
       <div class="job">
-        <span class="mono">2026 to now</span>
+        <span class="mono">2026</span>
         <div class="job-body">
           <img class="logo" src="img/allium.png" alt="">
-          <div>
-            <h3>Allium - Owner and Lead Developer</h3>
-            <p>Managing a team building an automation tool for Roblox with over 300 paying users, and maintaining a shared codebase across 15+ supported games.</p>
-          </div>
+          <details class="entry" open>
+            <summary><h3>Allium - Owner and Lead Developer</h3><span class="chev" aria-hidden="true"></span></summary>
+            <p>In 2026, I owned and led development of Allium, an automation tool for Roblox with over 600 paying users, managing a team of developers and maintaining a shared codebase across 15+ supported games. I've since handed the project off to a new team, leaving a clean, well-documented codebase they could take over seamlessly.</p>
+            <ul class="details">
+              <li>Managed a small team of developers, coordinating features, reviews and releases so every supported game stays working after each update.</li>
+              <li>Built a shared core that is ported to each game through a thin adapter, so one fix or feature reaches every game.</li>
+              <li>Created an advanced build pipeline that prepares code for protected distribution.</li>
+              <li>Created+managed a large ecosystem, linking all related products together seamlessly for the best user experience.</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+      <div class="job">
+        <span class="mono">2026 to ???</span>
+        <div class="job-body">
+          <span class="logo">?</span>
+          <details class="entry" open>
+            <summary><h3>Future work...</h3><span class="chev" aria-hidden="true"></span></summary>
+            <p>Your project could be here! I'm always eager to work with others and help people create stuff.</p>
+          </details>
         </div>
       </div>
     </section>
@@ -244,21 +324,21 @@
         <span class="mono">Luau</span>
         <div class="job-body">
           <span class="logo">V</span>
-          <div>
-            <h3>Vesper</h3>
+          <details class="entry" open>
+            <summary><h3>Vesper</h3><span class="chev" aria-hidden="true"></span></summary>
             <p>A Luau obfuscator designed to protect people's scripts.</p>
-          </div>
+          </details>
         </div>
       </div>
       <div class="job">
         <span class="mono">Windows</span>
         <div class="job-body">
           <img class="logo" src="img/rosette.svg" alt="">
-          <div>
-            <h3><a href="https://rosette.lol" target="_blank" rel="noopener">Rosette</a></h3>
+          <details class="entry" open>
+            <summary><h3><a href="https://rosette.lol" target="_blank" rel="noopener">Rosette</a></h3><span class="chev" aria-hidden="true"></span></summary>
             <p>Lightweight game clipping software for Windows.</p>
             <a class="mono site" href="https://rosette.lol" target="_blank" rel="noopener">rosette.lol</a>
-          </div>
+          </details>
         </div>
       </div>
     </section>
@@ -278,14 +358,19 @@
     </section>
   </main>
 
-  <dialog class="viewer" id="viewer"><video controls playsinline></video></dialog>
+  <dialog class="viewer" id="viewer"><video controls playsinline></video><img alt=""></dialog>
   <script>
     const viewer = document.getElementById('viewer');
     const big = viewer.querySelector('video');
+    const bigImg = viewer.querySelector('img');
     document.querySelectorAll('.clip').forEach(btn => btn.addEventListener('click', () => {
-      big.src = btn.querySelector('video').getAttribute('src').split('#')[0];
+      const vid = btn.querySelector('video');
+      const pic = btn.querySelector('img');
+      big.hidden = !vid;
+      bigImg.hidden = !pic;
+      if (pic) { bigImg.src = pic.src; bigImg.alt = pic.alt; }
       viewer.showModal();
-      big.play();
+      if (vid) { big.src = vid.getAttribute('src').split('#')[0]; big.play(); }
     }));
     viewer.addEventListener('click', e => { if (e.target === viewer) viewer.close(); });
     viewer.addEventListener('close', () => big.pause());
